@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">TO-DOAndroid</string>
+    <string name="subTitle">Твои задачи - мои задачи!</string>
+    <string name="titlePage">To-Do List</string>
+    <string name="version_1_0">Version 1.0</string>
 </resources>
