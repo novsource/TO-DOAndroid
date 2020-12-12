@@ -1,14 +1,24 @@
 package com.example.to_doandroid;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     TextView titlePage, subTitle, versionTitle;
+
+    DatabaseReference reference;
+    RecyclerView taskList; // Список с задачами
+    ArrayList<Task> tasks; // ArrayList с тасками
+    TaskAdapter taskAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
