@@ -11,9 +11,9 @@
         android:theme="@style/Theme.TODOAndroid">
         <activity android:name=".EditTaskActivity"></activity>
         <activity android:name=".CalendarActivity" />
-        <activity android:name=".CreateNewTask" />
+        <activity android:name=".CreateNewTaskActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".Categories">
+        <activity android:name=".CategoriesActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -23,7 +23,7 @@ public class CalendarActivity extends AppCompatActivity {
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
                 String date = String.format("%d/%d/%d", year, month, dayOfMonth);
 
-                Intent intent = new Intent(CalendarActivity.this, CreateNewTask.class);
+                Intent intent = new Intent(CalendarActivity.this, CreateNewTaskActivity.class);
                 intent.putExtra("date", date);
                 startActivity(intent);
             }

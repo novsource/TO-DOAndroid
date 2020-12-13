@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Categories extends AppCompatActivity {
+public class CategoriesActivity extends AppCompatActivity {
 
     TextView workCategoryTitle, homeCategoryTitle, shopCategoryTitle;
     LinearLayout workCategoryLayout;
@@ -31,11 +31,11 @@ public class Categories extends AppCompatActivity {
         this.workCategoryLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Categories.this, MainActivity.class);
+                Intent intent = new Intent(CategoriesActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
 
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Categories.this);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(CategoriesActivity.this);
     }
 }

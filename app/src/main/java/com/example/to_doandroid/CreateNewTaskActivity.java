@@ -22,7 +22,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Random;
 
-public class CreateNewTask extends AppCompatActivity {
+public class CreateNewTaskActivity extends AppCompatActivity {
 
     TextView taskDate; // дата задачи
     EditText taskDoesTitle, taskNote; // Название задачи и заметка
@@ -58,7 +58,7 @@ public class CreateNewTask extends AppCompatActivity {
         this.addTaskDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(CreateNewTask.this, CalendarActivity.class);
+                Intent intent = new Intent(CreateNewTaskActivity.this, CalendarActivity.class);
                 startActivity(intent);
             }
         });
@@ -76,7 +76,7 @@ public class CreateNewTask extends AppCompatActivity {
                         snapshot.getRef().child("taskCB").setValue(taskCB.isChecked()); // Передаем статус задачи
                         snapshot.getRef().child("taskDate").setValue(taskDate.getText().toString()); // Передаем дату задачи
 
-                        Intent intent = new Intent(CreateNewTask.this,MainActivity.class);
+                        Intent intent = new Intent(CreateNewTaskActivity.this,MainActivity.class);
                         startActivity(intent);
                     }
 

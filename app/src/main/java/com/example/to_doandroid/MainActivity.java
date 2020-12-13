@@ -14,7 +14,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -88,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         btnAddTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, CreateNewTask.class);
+                Intent intent = new Intent(MainActivity.this, CreateNewTaskActivity.class);
                 startActivity(intent);
             }
         });
