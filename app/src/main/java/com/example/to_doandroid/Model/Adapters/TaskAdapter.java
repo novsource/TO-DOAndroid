@@ -1,4 +1,4 @@
-package com.example.to_doandroid;
+package com.example.to_doandroid.Model.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.to_doandroid.Model.Task;
+import com.example.to_doandroid.R;
 
 import java.util.ArrayList;
 

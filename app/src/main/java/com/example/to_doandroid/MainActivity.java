@@ -1,18 +1,25 @@
 package com.example.to_doandroid;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.to_doandroid.Model.Task;
+import com.example.to_doandroid.Model.Adapters.TaskAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,13 +33,13 @@ public class MainActivity extends AppCompatActivity {
 
     TextView titlePage, subTitle;
     CheckBox taskCB;
+    Button btnAddTask;
 
     DatabaseReference reference; // Создаем DBReference для считывания и записи данных в Firebase
     RecyclerView taskRecyclerView; // Список с задачами
     RecyclerView.LayoutManager layoutManager;
     ArrayList<Task> tasks; // ArrayList с тасками
     TaskAdapter taskAdapter; // Адаптер
-
 
 
     @Override
@@ -45,20 +52,14 @@ public class MainActivity extends AppCompatActivity {
         this.titlePage = findViewById(R.id.titlePage);
         this.subTitle = findViewById(R.id.subTitle);
         this.taskCB = findViewById(R.id.taskCB);
-
-        // добавляем свой шрифт
-      /*  Typeface TekoLight = Typeface.createFromAsset(getAssets(), "res/font/tekomedium.ttf");
-        Typeface TekoMedium = Typeface.createFromAsset(getAssets(), "res/font/tekomedium.ttf");
-
-        // Меняем шрифт у текста на главной панели
-        this.titlePage.setTypeface(TekoMedium);
-        this.subTitle.setTypeface(TekoMedium);
-        this.versionTitle.setTypeface(TekoLight);*/
+        this.btnAddTask = findViewById(R.id.btnAddTask);
 
         this.layoutManager = new LinearLayoutManager(this);
 
         this.taskRecyclerView = findViewById(R.id.taskList);
         this.taskRecyclerView.setLayoutManager(this.layoutManager);
+        this.taskRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+
         this.tasks = new ArrayList<Task>();
 
         //Получаем данные из Firebase
@@ -82,9 +83,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        this.taskRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-
         dragTask();
+
+
+        btnAddTask.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, CreateNewTask.class);
+                startActivity(intent);
+            }
+        });
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
     }
 
     //Метод для перетаскивания тасков
@@ -110,5 +123,17 @@ public class MainActivity extends AppCompatActivity {
         });
 
         helper.attachToRecyclerView(taskRecyclerView);
+    }
+
+    //Кнопка назад
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

@@ -1,4 +1,4 @@
-package com.example.to_doandroid;
+package com.example.to_doandroid.Model;
 
 public class Task {
     String taskDoesTitle;

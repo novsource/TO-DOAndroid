@@ -17,7 +17,7 @@
             android:id="@+id/titlePage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/titlePage"
+            android:text="Работа"
             android:textAlignment="center"
             android:textColor="#000"
             android:textSize="30sp" />
@@ -47,5 +47,33 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp" />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:baselineAligned="true">
+
+            <Button
+                android:id="@+id/btnAddTask"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#00FFFFFF"
+                android:drawableLeft="@drawable/addplus"
+                android:drawablePadding="25sp"
+                android:paddingLeft="20dp"
+                android:text="Добавить задачу"
+                android:textAlignment="textStart"
+                android:textAllCaps="false"
+                android:textColor="#1E58BD"
+                android:textSize="13sp" />
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
 
 </LinearLayout>
