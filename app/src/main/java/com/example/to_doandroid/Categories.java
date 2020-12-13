@@ -8,6 +8,7 @@ import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Categories extends AppCompatActivity {
@@ -35,6 +36,6 @@ public class Categories extends AppCompatActivity {
             }
         });
 
-
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Categories.this);
     }
 }

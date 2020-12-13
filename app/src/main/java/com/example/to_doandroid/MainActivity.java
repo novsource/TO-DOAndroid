@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         this.tasks = new ArrayList<Task>();
 
         //Получаем данные из Firebase
-        reference = FirebaseDatabase.getInstance().getReference().child("TO-DOAndroid"); //название главного узла в Firebase
+        reference = FirebaseDatabase.getInstance().getReference().child("TaskList"); //название главного узла в Firebase
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
