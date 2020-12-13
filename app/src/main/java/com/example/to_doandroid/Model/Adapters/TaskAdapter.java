@@ -1,6 +1,7 @@
 package com.example.to_doandroid.Model.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.to_doandroid.EditTaskActivity;
 import com.example.to_doandroid.Model.Task;
 import com.example.to_doandroid.R;
 
@@ -33,8 +35,19 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        holder.taskDate.setText(tasks.get(position).getTaskDate());
         holder.taskDoesTitle.setText(tasks.get(position).getTaskDoesTitle());
         holder.taskCB.setChecked(tasks.get(position).getTaskCB());
+        holder.taskNote.setText(tasks.get(position).getTaskNote());
+
+        // Вызов редактора задачи по нажатию в RecyclerView
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, EditTaskActivity.class);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -44,13 +57,15 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
 
     protected class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView taskDoesTitle;
+        TextView taskDoesTitle, taskDate, taskNote;
         CheckBox taskCB;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             taskDoesTitle = (TextView) itemView.findViewById(R.id.taskDoesTitle);
             taskCB = (CheckBox) itemView.findViewById(R.id.taskCB);
+            taskDate = (TextView) itemView.findViewById(R.id.taskDate);
+            taskNote = (TextView) itemView.findViewById(R.id.taskNote);
         }
     }
 }

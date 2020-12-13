@@ -71,9 +71,10 @@ public class CreateNewTask extends AppCompatActivity {
                 reference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        snapshot.getRef().child("taskDoesTitle").setValue(taskDoesTitle.getText().toString());
-                        snapshot.getRef().child("taskNote").setValue(taskNote.getText().toString());
-                        snapshot.getRef().child("taskCB").setValue(taskCB.isChecked());
+                        snapshot.getRef().child("taskDoesTitle").setValue(taskDoesTitle.getText().toString()); // Передаем название задачи
+                        snapshot.getRef().child("taskNote").setValue(taskNote.getText().toString()); // Передаем заметку
+                        snapshot.getRef().child("taskCB").setValue(taskCB.isChecked()); // Передаем статус задачи
+                        snapshot.getRef().child("taskDate").setValue(taskDate.getText().toString()); // Передаем дату задачи
 
                         Intent intent = new Intent(CreateNewTask.this,MainActivity.class);
                         startActivity(intent);

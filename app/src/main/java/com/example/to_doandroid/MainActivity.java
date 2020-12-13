@@ -32,7 +32,6 @@ import java.util.Collections;
 public class MainActivity extends AppCompatActivity {
 
     TextView titlePage, subTitle;
-    CheckBox taskCB;
     Button btnAddTask;
 
     DatabaseReference reference; // Создаем DBReference для считывания и записи данных в Firebase
@@ -51,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         // получаем по id
         this.titlePage = findViewById(R.id.titlePage);
         this.subTitle = findViewById(R.id.subTitle);
-        this.taskCB = findViewById(R.id.taskCB);
+
         this.btnAddTask = findViewById(R.id.btnAddTask);
 
         this.layoutManager = new LinearLayoutManager(this);

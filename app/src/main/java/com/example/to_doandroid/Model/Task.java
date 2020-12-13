@@ -1,17 +1,19 @@
 package com.example.to_doandroid.Model;
 
 public class Task {
-    String taskDoesTitle;
-    String date;
-    Boolean taskCB;
+    String taskDate; // Дата задачи
+    String taskDoesTitle;// Название задачи
+    String taskNote;
+    Boolean taskCB; // Статус задачи: выполнена или нет
 
     public Task() {
     }
 
-    public Task(String taskDoesTitle, String date, boolean taskCB) {
+    public Task(String taskDate, String taskDoesTitle, String taskNote, boolean taskCB) {
+        this.taskDate = taskDate;
         this.taskDoesTitle = taskDoesTitle;
-        this.date = date;
         this.taskCB = taskCB;
+        this.taskNote = taskNote;
     }
 
     public String getTaskDoesTitle() {
@@ -22,12 +24,16 @@ public class Task {
         return taskCB;
     }
 
-    public String getDate() {
-        return date;
+    public String getTaskDate() {
+        return taskDate;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public String getTaskNote() {
+        return taskNote;
+    }
+
+    public void setTaskNote(String taskNote) {
+        this.taskNote = taskNote;
     }
 
     public void setTaskCB(Boolean taskCB) {
@@ -36,5 +42,9 @@ public class Task {
 
     public void setTaskDoesTitle(String taskDoesTitle) {
         this.taskDoesTitle = taskDoesTitle;
+    }
+
+    public void setTaskDate(String taskDate) {
+        this.taskDate = taskDate;
     }
 }

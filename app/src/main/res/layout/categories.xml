@@ -30,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="17sp"
+                android:layout_marginTop="15sp"
                 android:text="Работа"
                 android:textColor="#000"
                 android:textSize="16sp"
