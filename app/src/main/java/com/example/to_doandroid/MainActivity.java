@@ -2,13 +2,14 @@ package com.example.to_doandroid;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.graphics.Typeface;
 import android.os.Bundle;
-import android.text.Layout;
 import android.view.Window;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,15 +20,20 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView titlePage, subTitle, versionTitle;
+    TextView titlePage, subTitle;
+    CheckBox taskCB;
 
     DatabaseReference reference; // Создаем DBReference для считывания и записи данных в Firebase
-    RecyclerView taskList; // Список с задачами
+    RecyclerView taskRecyclerView; // Список с задачами
+    RecyclerView.LayoutManager layoutManager;
     ArrayList<Task> tasks; // ArrayList с тасками
-    TaskAdapter taskAdapter;
+    TaskAdapter taskAdapter; // Адаптер
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         // получаем по id
         this.titlePage = findViewById(R.id.titlePage);
         this.subTitle = findViewById(R.id.subTitle);
+        this.taskCB = findViewById(R.id.taskCB);
 
         // добавляем свой шрифт
       /*  Typeface TekoLight = Typeface.createFromAsset(getAssets(), "res/font/tekomedium.ttf");
@@ -48,8 +55,10 @@ public class MainActivity extends AppCompatActivity {
         this.subTitle.setTypeface(TekoMedium);
         this.versionTitle.setTypeface(TekoLight);*/
 
-        this.taskList = findViewById(R.id.taskList);
-        this.taskList.setLayoutManager(new LinearLayoutManager(this));
+        this.layoutManager = new LinearLayoutManager(this);
+
+        this.taskRecyclerView = findViewById(R.id.taskList);
+        this.taskRecyclerView.setLayoutManager(this.layoutManager);
         this.tasks = new ArrayList<Task>();
 
         //Получаем данные из Firebase
@@ -63,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                     tasks.add(task); // добавили в список задач
                 }
                 taskAdapter = new TaskAdapter(MainActivity.this, tasks);
-                taskList.setAdapter(taskAdapter);
+                taskRecyclerView.setAdapter(taskAdapter);
                 taskAdapter.notifyDataSetChanged();
             }
 
@@ -72,5 +81,34 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "No data", Toast.LENGTH_SHORT).show();
             }
         });
+
+        this.taskRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+
+        dragTask();
+    }
+
+    //Метод для перетаскивания тасков
+    private void dragTask() {
+        ItemTouchHelper helper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN, 0) {
+
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder dragged, @NonNull RecyclerView.ViewHolder target) {
+                int positionDragged = dragged.getAdapterPosition();
+                int positionTarget = target.getAdapterPosition();
+
+                Collections.swap(tasks, positionDragged, positionTarget);
+
+                taskAdapter.notifyItemMoved(positionDragged, positionTarget);
+
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+
+            }
+        });
+
+        helper.attachToRecyclerView(taskRecyclerView);
     }
 }

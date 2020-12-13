@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -30,6 +31,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.taskDoesTitle.setText(tasks.get(position).getTaskDoesTitle());
+        holder.taskCB.setChecked(tasks.get(position).getTaskCB());
     }
 
     @Override
@@ -40,10 +42,12 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
     protected class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView taskDoesTitle;
+        CheckBox taskCB;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             taskDoesTitle = (TextView) itemView.findViewById(R.id.taskDoesTitle);
+            taskCB = (CheckBox) itemView.findViewById(R.id.taskCB);
         }
     }
 }
