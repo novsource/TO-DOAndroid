@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Layout;
+import android.view.Window;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,12 +32,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE); // убираем вверхную полоску с названием программы
         setContentView(R.layout.activity_main);
 
         // получаем по id
         this.titlePage = findViewById(R.id.titlePage);
         this.subTitle = findViewById(R.id.subTitle);
-        this.versionTitle = findViewById(R.id.versionTitle);
 
         // добавляем свой шрифт
       /*  Typeface TekoLight = Typeface.createFromAsset(getAssets(), "res/font/tekomedium.ttf");

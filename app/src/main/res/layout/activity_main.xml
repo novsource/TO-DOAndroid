@@ -47,12 +47,5 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp" />
 
-    <TextView
-        android:id="@+id/versionTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/version_1_0"
-        android:textAlignment="center" />
-
 
 </LinearLayout>
