@@ -1,7 +1,6 @@
 package com.example.to_doandroid;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -10,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -19,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.to_doandroid.Model.Task;
 import com.example.to_doandroid.Model.Adapters.TaskAdapter;
+import com.example.to_doandroid.View.ActionTask.CreateNewTaskActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -91,11 +90,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setHomeButtonEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(true);
-
     }
 
     //Метод для перетаскивания тасков
@@ -123,15 +117,4 @@ public class MainActivity extends AppCompatActivity {
         helper.attachToRecyclerView(taskRecyclerView);
     }
 
-    //Кнопка назад
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                this.finish();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
 }

@@ -1,8 +1,10 @@
-package com.example.to_doandroid;
+package com.example.to_doandroid.View.ActionTask;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.to_doandroid.R;
 
 public class EditTaskActivity extends AppCompatActivity {
 

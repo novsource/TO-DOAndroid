@@ -1,12 +1,10 @@
-package com.example.to_doandroid;
+package com.example.to_doandroid.View.ActionTask;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -14,6 +12,9 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.to_doandroid.View.CalendarActivity;
+import com.example.to_doandroid.MainActivity;
+import com.example.to_doandroid.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -76,7 +77,7 @@ public class CreateNewTaskActivity extends AppCompatActivity {
                         snapshot.getRef().child("taskCB").setValue(taskCB.isChecked()); // Передаем статус задачи
                         snapshot.getRef().child("taskDate").setValue(taskDate.getText().toString()); // Передаем дату задачи
 
-                        Intent intent = new Intent(CreateNewTaskActivity.this,MainActivity.class);
+                        Intent intent = new Intent(CreateNewTaskActivity.this, MainActivity.class);
                         startActivity(intent);
                     }
 
@@ -88,23 +89,6 @@ public class CreateNewTaskActivity extends AppCompatActivity {
             }
         });
 
-
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setHomeButtonEnabled(true);
-        actionBar.setDisplayHomeAsUpEnabled(true);
-
-
     }
 
-    //Кнопка назад
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                this.finish();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
 }

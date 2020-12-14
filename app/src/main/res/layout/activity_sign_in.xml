@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".View.AccountsAuth.SignInActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign In"
+            android:textAlignment="center"
+            android:textColor="#000"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            >
+
+        </TextView>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <EditText
+            android:id="@+id/emailAuthentication"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/linearlayoutform"
+            android:drawableLeft="@drawable/emaillogo"
+            android:drawablePadding="20sp"
+            android:hint="Введите свой e-mail..."
+            android:inputType="textEmailAddress"
+            android:paddingVertical="15sp"
+            android:paddingLeft="10dp"
+            android:textColor="#000">
+
+        </EditText>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <EditText
+            android:id="@+id/passwordAuthentication"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/linearlayoutform"
+            android:drawableLeft="@drawable/passwordicon"
+            android:drawablePadding="20sp"
+            android:hint="Введите пароль..."
+            android:inputType="textEmailAddress"
+            android:paddingVertical="15sp"
+            android:paddingLeft="10dp"
+            android:textColor="#000">
+
+        </EditText>
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/login"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="20sp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="20sp"
+        android:background="@drawable/linearlayoutform"
+        android:text="Войти в аккаунт"
+        android:textSize="18sp"
+        app:backgroundTint="#020202" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Нет аккаунта? "
+            android:textAlignment="center"
+            android:textColor="#000"
+            android:textSize="14sp">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/signUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Зарегистрируйтесь!"
+            android:textAlignment="center"
+            android:textColor="#2196F3"
+            android:textSize="14sp">
+
+        </TextView>
+
+    </LinearLayout>
+
+</LinearLayout>

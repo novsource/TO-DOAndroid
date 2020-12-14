@@ -1,4 +1,4 @@
-package com.example.to_doandroid.Model.Adapters;
+package com.example.to_doandroid.Model;
 
 import android.media.Image;
 

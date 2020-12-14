@@ -1,4 +1,4 @@
-package com.example.to_doandroid;
+package com.example.to_doandroid.View;
 
 
 import android.content.Intent;
@@ -10,6 +10,9 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.to_doandroid.MainActivity;
+import com.example.to_doandroid.R;
 
 public class CategoriesActivity extends AppCompatActivity {
 

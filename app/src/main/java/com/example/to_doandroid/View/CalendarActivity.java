@@ -1,4 +1,4 @@
-package com.example.to_doandroid;
+package com.example.to_doandroid.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,6 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.CalendarView;
+
+import com.example.to_doandroid.R;
+import com.example.to_doandroid.View.ActionTask.CreateNewTaskActivity;
 
 public class CalendarActivity extends AppCompatActivity {
 

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#F1F0F0"
     android:orientation="vertical"
-    tools:context=".CreateNewTaskActivity">
+    tools:context=".View.ActionTask.CreateNewTaskActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -122,14 +122,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="bottom"
-        android:paddingBottom="3dp"
-        >
+        android:paddingBottom="3dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:baselineAligned="true"
             android:background="@drawable/linearlayoutform"
+            android:baselineAligned="true"
+            android:layout_marginLeft="8sp"
             >
 
             <Button
@@ -143,6 +143,13 @@
                 android:textAllCaps="false"
                 android:textColor="#1E58BD"
                 android:textSize="13sp" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="?android:attr/listDivider" />
 
             <Button
                 android:id="@+id/btnClose"

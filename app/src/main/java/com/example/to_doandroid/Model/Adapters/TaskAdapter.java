@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.to_doandroid.EditTaskActivity;
+import com.example.to_doandroid.View.ActionTask.EditTaskActivity;
 import com.example.to_doandroid.Model.Task;
 import com.example.to_doandroid.R;
 
