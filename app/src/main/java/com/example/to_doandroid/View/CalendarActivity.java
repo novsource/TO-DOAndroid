@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.widget.CalendarView;
 
 import com.example.to_doandroid.R;
-import com.example.to_doandroid.View.ActionTask.CreateNewTaskActivity;
+import com.example.to_doandroid.View.ActionsWithTask.CreateNewTaskActivity;
 
 public class CalendarActivity extends AppCompatActivity {
 

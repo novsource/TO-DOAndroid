@@ -13,11 +13,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.to_doandroid.MainActivity;
 import com.example.to_doandroid.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class CategoriesActivity extends AppCompatActivity {
 
-    TextView workCategoryTitle, homeCategoryTitle, shopCategoryTitle;
+    TextView workCategoryTitle, homeCategoryTitle, shopCategoryTitle, accountEmail;
     LinearLayout workCategoryLayout;
+
+    FirebaseAuth firebaseAuth;
+    FirebaseUser firebaseUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +35,13 @@ public class CategoriesActivity extends AppCompatActivity {
 
         this.homeCategoryTitle = findViewById(R.id.homeCategoryTitle);
         this.shopCategoryTitle = findViewById(R.id.shopCategoryTitle);
+        this.accountEmail = findViewById(R.id.accountEmail);
+
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
+
+        this.accountEmail.setText(firebaseUser.getEmail());
 
         this.workCategoryLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,6 +51,5 @@ public class CategoriesActivity extends AppCompatActivity {
             }
         });
 
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(CategoriesActivity.this);
     }
 }
