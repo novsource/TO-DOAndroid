@@ -39,7 +39,7 @@ public class CreateNewTaskActivity extends AppCompatActivity {
 
     Button btnSaveTask; // Кнопки сохранения задачи и выхода из активити
     DatabaseReference reference;
-    Integer taskId = new Random().nextInt(); // генерируем новый id ля задачи
+    Integer taskId = new Random().nextInt(); // генерируем id для задачи
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +81,7 @@ public class CreateNewTaskActivity extends AppCompatActivity {
                 reference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        snapshot.getRef().child("taskId").setValue(taskId);
                         snapshot.getRef().child("taskDoesTitle").setValue(taskDoesTitle.getText().toString()); // Передаем название задачи
                         snapshot.getRef().child("taskNote").setValue(taskNote.getText().toString()); // Передаем заметку
                         snapshot.getRef().child("taskCB").setValue(taskCB.isChecked()); // Передаем статус задачи

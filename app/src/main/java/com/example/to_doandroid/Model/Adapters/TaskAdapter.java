@@ -40,11 +40,25 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         holder.taskCB.setChecked(tasks.get(position).getTaskCB());
         holder.taskNote.setText(tasks.get(position).getTaskNote());
 
+        String taskDoesTitle = tasks.get(position).getTaskDoesTitle();
+        String taskNote = tasks.get(position).getTaskNote();
+        String taskDate = tasks.get(position).getTaskDate();
+        Boolean taskCB = tasks.get(position).getTaskCB();
+        String taskId = String.valueOf(tasks.get(position).getTaskId());
+
         // Вызов редактора задачи по нажатию в RecyclerView
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, EditTaskActivity.class);
+
+                // Передаем данные форме редактирования
+                intent.putExtra("taskDoesTitle", taskDoesTitle);
+                intent.putExtra("taskNote", taskNote);
+                intent.putExtra("taskDate", taskDate);
+                intent.putExtra("taskCB", taskCB);
+                intent.putExtra("taskId", taskId);
+
                 context.startActivity(intent);
             }
         });
@@ -57,7 +71,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
 
     protected class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView taskDoesTitle, taskDate, taskNote;
+        TextView taskDoesTitle, taskDate, taskNote, taskId;
         CheckBox taskCB;
 
         public ViewHolder(@NonNull View itemView) {

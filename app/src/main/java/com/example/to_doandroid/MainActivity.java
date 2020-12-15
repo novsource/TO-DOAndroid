@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
 
     RecyclerView RVWithTasks; // Список с выполненными задачами
 
-    RecyclerView.LayoutManager layoutManager;
 
     ArrayList<Task> tasks;
 
@@ -64,11 +63,9 @@ public class MainActivity extends AppCompatActivity {
 
         this.btnAddTask = findViewById(R.id.btnAddTask);
 
-        this.layoutManager = new LinearLayoutManager(this);
-
         this.RVWithTasks = findViewById(R.id.taskList);
 
-        this.RVWithTasks.setLayoutManager(this.layoutManager);
+        this.RVWithTasks.setLayoutManager(new LinearLayoutManager(this));
 
         this.RVWithTasks.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
 
@@ -90,7 +87,6 @@ public class MainActivity extends AppCompatActivity {
                 }
                 taskAdapter= new TaskAdapter(MainActivity.this, tasks);
                 RVWithTasks.setAdapter(taskAdapter);
-
                 taskAdapter.notifyDataSetChanged();
             }
 

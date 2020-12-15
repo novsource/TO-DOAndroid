@@ -1,50 +1,59 @@
 package com.example.to_doandroid.Model;
 
 public class Task {
-    String taskDate; // Дата задачи
-    String taskDoesTitle;// Название задачи
-    String taskNote;
-    Boolean taskCB; // Статус задачи: выполнена или нет
+    int id; // Уникальный идентификатор
+    String date; // Дата задачи
+    String title;// Название задачи
+    String note; // заметка задачи
+    Boolean status; // Статус задачи: выполнена или нет
 
     public Task() {
     }
 
-    public Task(String taskDate, String taskDoesTitle, String taskNote, boolean taskCB) {
-        this.taskDate = taskDate;
-        this.taskDoesTitle = taskDoesTitle;
-        this.taskCB = taskCB;
-        this.taskNote = taskNote;
+    public Task(String date, String title, String note, boolean status) {
+        this.date = date;
+        this.title = title;
+        this.status = status;
+        this.note = note;
+    }
+
+    public int getTaskId() {
+        return id;
+    }
+
+    public void setTaskId(int id) {
+        this.id = id;
     }
 
     public String getTaskDoesTitle() {
-        return taskDoesTitle;
+        return title;
     }
 
     public Boolean getTaskCB() {
-        return taskCB;
+        return status;
     }
 
     public String getTaskDate() {
-        return taskDate;
+        return date;
     }
 
     public String getTaskNote() {
-        return taskNote;
+        return note;
     }
 
-    public void setTaskNote(String taskNote) {
-        this.taskNote = taskNote;
+    public void setTaskNote(String note) {
+        this.note = note;
     }
 
-    public void setTaskCB(Boolean taskCB) {
-        this.taskCB = taskCB;
+    public void setTaskCB(Boolean status) {
+        this.status = status;
     }
 
-    public void setTaskDoesTitle(String taskDoesTitle) {
-        this.taskDoesTitle = taskDoesTitle;
+    public void setTaskDoesTitle(String title) {
+        this.title = title;
     }
 
-    public void setTaskDate(String taskDate) {
-        this.taskDate = taskDate;
+    public void setTaskDate(String date) {
+        this.date = date;
     }
 }

@@ -41,7 +41,7 @@
                 android:layout_weight="1" />
 
             <Button
-                android:id="@+id/btnSaveTask"
+                android:id="@+id/btnUpdateTask"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:background="#00FFFFFF"
@@ -49,11 +49,6 @@
                 android:gravity="center|right"
                 android:textColor="#1E58BD"
                 android:textSize="13sp" />
-
-            <androidx.constraintlayout.widget.Barrier
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:barrierDirection="top" />
 
         </LinearLayout>
 
@@ -170,5 +165,26 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/taskInfo"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/linearlayoutform">
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="?android:attr/listDivider" />
+        </LinearLayout>
+
+
+    </RelativeLayout>
 
 </LinearLayout>
