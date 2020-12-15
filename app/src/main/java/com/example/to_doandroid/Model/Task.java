@@ -2,10 +2,11 @@ package com.example.to_doandroid.Model;
 
 public class Task {
     int id; // Уникальный идентификатор
-    String date; // Дата задачи
+    String date; // Дата выполнения задачи
     String title;// Название задачи
     String note; // заметка задачи
     Boolean status; // Статус задачи: выполнена или нет
+    String dateCreate; // Дата создания задачи
 
     public Task() {
     }
@@ -15,6 +16,14 @@ public class Task {
         this.title = title;
         this.status = status;
         this.note = note;
+    }
+
+    public String getTaskWasCreated() {
+        return dateCreate;
+    }
+
+    public void setTaskWasCreated(String dateCreate) {
+        this.dateCreate = dateCreate;
     }
 
     public int getTaskId() {

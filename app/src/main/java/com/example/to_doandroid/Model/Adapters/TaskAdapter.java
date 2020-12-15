@@ -45,6 +45,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         String taskDate = tasks.get(position).getTaskDate();
         Boolean taskCB = tasks.get(position).getTaskCB();
         String taskId = String.valueOf(tasks.get(position).getTaskId());
+        String taskWasCreated = tasks.get(position).getTaskWasCreated();
 
         // Вызов редактора задачи по нажатию в RecyclerView
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -58,6 +59,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
                 intent.putExtra("taskDate", taskDate);
                 intent.putExtra("taskCB", taskCB);
                 intent.putExtra("taskId", taskId);
+                intent.putExtra("taskWasCreated", taskWasCreated);
 
                 context.startActivity(intent);
             }
@@ -71,7 +73,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
 
     protected class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView taskDoesTitle, taskDate, taskNote, taskId;
+        TextView taskDoesTitle, taskDate, taskNote;
         CheckBox taskCB;
 
         public ViewHolder(@NonNull View itemView) {

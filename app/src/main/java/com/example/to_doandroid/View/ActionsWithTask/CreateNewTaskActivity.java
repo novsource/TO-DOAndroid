@@ -23,6 +23,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Random;
 
 public class CreateNewTaskActivity extends AppCompatActivity {
@@ -86,6 +90,16 @@ public class CreateNewTaskActivity extends AppCompatActivity {
                         snapshot.getRef().child("taskNote").setValue(taskNote.getText().toString()); // Передаем заметку
                         snapshot.getRef().child("taskCB").setValue(taskCB.isChecked()); // Передаем статус задачи
                         snapshot.getRef().child("taskDate").setValue(taskDate.getText().toString()); // Передаем дату задачи
+
+                        // Текущее время
+                        Date currentDate = new Date();
+                        DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
+                        String date = dateFormat.format(currentDate);
+
+                        DateFormat timeFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
+                        String time = timeFormat.format(currentDate);
+
+                        snapshot.getRef().child("taskWasCreated").setValue(date + " " + time);
 
                         Intent intent = new Intent(CreateNewTaskActivity.this, MainActivity.class);
                         startActivity(intent);
