@@ -11,13 +11,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.to_doandroid.Model.Task;
 import com.example.to_doandroid.Model.Adapters.TaskAdapter;
-import com.example.to_doandroid.View.ActionTask.CreateNewTaskActivity;
+import com.example.to_doandroid.View.ActionsWithTask.CreateNewTaskActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,14 +35,21 @@ import java.util.Collections;
 public class MainActivity extends AppCompatActivity {
 
     TextView titlePage, subTitle;
+    CheckBox taskCB;
+
     Button btnAddTask;
 
     DatabaseReference reference; // Создаем DBReference для считывания и записи данных в Firebase
-    RecyclerView taskRecyclerView; // Список с задачами
-    RecyclerView.LayoutManager layoutManager;
-    ArrayList<Task> tasks; // ArrayList с тасками
-    TaskAdapter taskAdapter; // Адаптер
+    FirebaseAuth firebaseAuth;
+    FirebaseUser firebaseUser;
 
+    RecyclerView RVWithTasks; // Список с выполненными задачами
+
+    RecyclerView.LayoutManager layoutManager;
+
+    ArrayList<Task> tasks;
+
+    TaskAdapter taskAdapter; // Адаптер
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,29 +60,37 @@ public class MainActivity extends AppCompatActivity {
         // получаем по id
         this.titlePage = findViewById(R.id.titlePage);
         this.subTitle = findViewById(R.id.subTitle);
+        this.taskCB = findViewById(R.id.taskCB);
 
         this.btnAddTask = findViewById(R.id.btnAddTask);
 
         this.layoutManager = new LinearLayoutManager(this);
 
-        this.taskRecyclerView = findViewById(R.id.taskList);
-        this.taskRecyclerView.setLayoutManager(this.layoutManager);
-        this.taskRecyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        this.RVWithTasks = findViewById(R.id.taskList);
 
-        this.tasks = new ArrayList<Task>();
+        this.RVWithTasks.setLayoutManager(this.layoutManager);
+
+        this.RVWithTasks.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+
+        this.tasks = new ArrayList<>();
+
+        this.firebaseAuth = FirebaseAuth.getInstance();
+        this.firebaseUser = firebaseAuth.getCurrentUser();
 
         //Получаем данные из Firebase
-        reference = FirebaseDatabase.getInstance().getReference().child("TaskList"); //название главного узла в Firebase
+        reference = FirebaseDatabase.getInstance().getReference().child("TaskList").child(firebaseUser.getUid()); //название узла в Firebase для конкретного пользователя
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 // Извлекаем данные из узла
-                for (DataSnapshot dataSnapshot1: dataSnapshot.getChildren()) { //получили всех потомков
+
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) { //получили всех потомков
                     Task task = dataSnapshot1.getValue(Task.class); // получили значение
-                    tasks.add(task); // добавили в список задач
+                    tasks.add(task);
                 }
-                taskAdapter = new TaskAdapter(MainActivity.this, tasks);
-                taskRecyclerView.setAdapter(taskAdapter);
+                taskAdapter= new TaskAdapter(MainActivity.this, tasks);
+                RVWithTasks.setAdapter(taskAdapter);
+
                 taskAdapter.notifyDataSetChanged();
             }
 
@@ -82,7 +102,6 @@ public class MainActivity extends AppCompatActivity {
 
         dragTask();
 
-
         btnAddTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,6 +109,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
     }
 
     //Метод для перетаскивания тасков
@@ -114,7 +135,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        helper.attachToRecyclerView(taskRecyclerView);
+        helper.attachToRecyclerView(RVWithTasks);
     }
+
 
 }

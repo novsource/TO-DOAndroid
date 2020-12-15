@@ -11,9 +11,9 @@
         android:theme="@style/Theme.TODOAndroid">
         <activity android:name=".View.CategoriesActivity"/>
         <activity android:name=".View.AccountsAuth.SignUpActivity" />
-        <activity android:name=".View.ActionTask.EditTaskActivity" />
+        <activity android:name=".View.ActionsWithTask.EditTaskActivity" />
         <activity android:name=".View.CalendarActivity" />
-        <activity android:name=".View.ActionTask.CreateNewTaskActivity" />
+        <activity android:name=".View.ActionsWithTask.CreateNewTaskActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".View.AccountsAuth.SignInActivity">
             <intent-filter>

@@ -54,7 +54,6 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 
-
         this.signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,6 +61,7 @@ public class SignUpActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
     }
 
     private boolean isEmailCorrect(CharSequence email) {
