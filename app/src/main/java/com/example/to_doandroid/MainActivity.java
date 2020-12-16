@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         this.firebaseUser = firebaseAuth.getCurrentUser();
 
         //Получаем данные из Firebase
-        reference = FirebaseDatabase.getInstance().getReference().child("TaskList").child(firebaseUser.getUid()).child("Work Tasks Category"); //название узла в Firebase для конкретного пользователя
+        reference = FirebaseDatabase.getInstance().getReference().child(firebaseUser.getUid()).child("Work Tasks Category"); //название узла в Firebase для конкретного пользователя
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

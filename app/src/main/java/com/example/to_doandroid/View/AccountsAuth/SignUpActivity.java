@@ -126,11 +126,11 @@ public class SignUpActivity extends AppCompatActivity {
                     Toast.makeText(SignUpActivity.this, "Аккаунт успешно зарегистрирован!", Toast.LENGTH_LONG);
 
                     firebaseUser = firebaseAuth.getCurrentUser();
-                    reference = FirebaseDatabase.getInstance().getReference().child("TaskList").child(firebaseUser.getUid());
+                    reference = FirebaseDatabase.getInstance().getReference().child(firebaseUser.getUid());
                     reference.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            snapshot.getRef().child("e-mail").setValue(firebaseUser.getEmail());
+                            snapshot.getRef().child("Email").setValue(firebaseUser.getEmail());
                         }
 
                         @Override

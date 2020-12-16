@@ -75,7 +75,9 @@
             android:layout_height="match_parent"
             android:layout_marginBottom="10dp"
             android:text="Задач ():"
-            android:textColor="#000">
+            android:textColor="#000"
+            android:textStyle="bold"
+            >
 
         </TextView>
 
@@ -106,8 +108,10 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginBottom="10dp"
-            android:text="Подключенных пользователей ():"
-            android:textColor="#000">
+            android:text="Добавленных пользователей ():"
+            android:textColor="#000"
+            android:textStyle="bold"
+            >
 
         </TextView>
 
@@ -132,7 +136,7 @@
             android:baselineAligned="true">
 
             <Button
-                android:id="@+id/btnShareTask"
+                android:id="@+id/btnAddUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="#00FFFFFF"

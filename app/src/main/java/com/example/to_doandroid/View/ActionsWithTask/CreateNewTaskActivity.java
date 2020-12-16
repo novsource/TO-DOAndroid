@@ -81,7 +81,7 @@ public class CreateNewTaskActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Добавляем задачу в базу данных
-                reference = FirebaseDatabase.getInstance().getReference().child("TaskList").child(firebaseUser.getUid()).child("Work Tasks Category").child("Task " + taskId);
+                reference = FirebaseDatabase.getInstance().getReference().child(firebaseUser.getUid()).child("Work Tasks Category").child("Task " + taskId);
                 reference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {

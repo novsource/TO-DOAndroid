@@ -12,7 +12,7 @@
         <ImageView
             android:layout_width="30sp"
             android:layout_height="30sp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginTop="25dp"
             android:background="@drawable/accicon">
 
@@ -20,32 +20,55 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/accountName"
+            <LinearLayout
+                android:layout_width="312dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/accountName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20sp"
+                    android:text="Пользователь"
+                    android:textColor="#000"
+                    android:textSize="12sp"
+
+                    />
+
+                <TextView
+                    android:id="@+id/accountEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="3sp"
+                    android:text="Account email"
+                    android:textColor="#838383"
+                    android:textSize="12sp"
+
+                    />
+
+            </LinearLayout>
+
+            <Space
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20sp"
-                android:text="Пользователь"
-                android:textColor="#000"
-                android:textSize="12sp"
+                android:layout_weight="1" />
 
-                />
+            <Button
+                android:id="@+id/btnAccOut"
+                android:layout_width="49dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="10dp"
+                android:background="#00FFFFFF"
+                android:drawableRight="@drawable/accout"
 
-            <TextView
-                android:id="@+id/accountEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="3sp"
-                android:text="Account email"
-                android:textColor="#838383"
-                android:textSize="12sp"
-
-                />
+                android:gravity="center|right"
+                android:textColor="#000" />
 
         </LinearLayout>
 

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +19,7 @@ import com.example.to_doandroid.Model.Adapters.TaskAdapter;
 import com.example.to_doandroid.Model.Task;
 import com.example.to_doandroid.R;
 import com.example.to_doandroid.ShareTasks;
+import com.example.to_doandroid.View.AccountsAuth.SignInActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -30,6 +32,8 @@ public class CategoriesActivity extends AppCompatActivity {
 
     TextView workCategoryTitle, homeCategoryTitle, shopCategoryTitle, accountEmail, workTaskCount;
     LinearLayout workCategoryLayout, shareCategoryLayout; // рабочие Layout
+
+    Button btnAccOut;
 
     DatabaseReference reference;
     FirebaseAuth firebaseAuth;
@@ -51,13 +55,14 @@ public class CategoriesActivity extends AppCompatActivity {
 
         this.accountEmail = findViewById(R.id.accountEmail);
 
+        this.btnAccOut = findViewById(R.id.btnAccOut);
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
 
         this.accountEmail.setText(firebaseUser.getEmail());
 
-        reference = FirebaseDatabase.getInstance().getReference().child("TaskList").child(firebaseUser.getUid()).child("Work Tasks Category"); //название узла в Firebase для конкретного пользователя
+        reference = FirebaseDatabase.getInstance().getReference().child(firebaseUser.getUid()).child("Work Tasks Category"); //название узла в Firebase для конкретного пользователя
 
         //Получаем данные из Firebase
 
@@ -89,6 +94,15 @@ public class CategoriesActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CategoriesActivity.this, ShareTasks.class);
+                startActivity(intent);
+            }
+        });
+
+        this.btnAccOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                firebaseAuth.getInstance().signOut();
+                Intent intent = new Intent(CategoriesActivity.this, SignInActivity.class);
                 startActivity(intent);
             }
         });
