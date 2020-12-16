@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.example.to_doandroid.Model.Task;
 import com.example.to_doandroid.Model.Adapters.TaskAdapter;
 import com.example.to_doandroid.View.ActionsWithTask.CreateNewTaskActivity;
+import com.example.to_doandroid.View.CategoriesActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -34,7 +35,7 @@ import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView titlePage, subTitle;
+    TextView titlePage, subTitle, btnClose;
     CheckBox taskCB;
 
     Button btnAddTask;
@@ -44,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
     FirebaseUser firebaseUser;
 
     RecyclerView RVWithTasks; // Список с выполненными задачами
-
 
     ArrayList<Task> tasks;
 
@@ -56,12 +56,16 @@ public class MainActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE); // убираем вверхную полоску с названием программы
         setContentView(R.layout.activity_main);
 
-        // получаем по id
+        // получаем TextView id
         this.titlePage = findViewById(R.id.titlePage);
         this.subTitle = findViewById(R.id.subTitle);
+
+        // Статус выполнения задачи
         this.taskCB = findViewById(R.id.taskCB);
 
+        //Кнопки выхода и добавления тасков
         this.btnAddTask = findViewById(R.id.btnAddTask);
+        this.btnClose = findViewById(R.id.btnClose);
 
         this.RVWithTasks = findViewById(R.id.taskList);
 
@@ -75,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         this.firebaseUser = firebaseAuth.getCurrentUser();
 
         //Получаем данные из Firebase
-        reference = FirebaseDatabase.getInstance().getReference().child("TaskList").child(firebaseUser.getUid()); //название узла в Firebase для конкретного пользователя
+        reference = FirebaseDatabase.getInstance().getReference().child("TaskList").child(firebaseUser.getUid()).child("Work Tasks Category"); //название узла в Firebase для конкретного пользователя
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -92,13 +96,13 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(getApplicationContext(), "No data", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Нет задач", Toast.LENGTH_SHORT).show();
             }
         });
 
-        dragTask();
+        dragTask(); // Перетаскивание объектов в RecyclerView
 
-        btnAddTask.setOnClickListener(new View.OnClickListener() {
+        this.btnAddTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, CreateNewTaskActivity.class);
@@ -106,6 +110,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        this.btnClose.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, CategoriesActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 

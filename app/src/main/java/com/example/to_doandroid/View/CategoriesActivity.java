@@ -17,6 +17,7 @@ import com.example.to_doandroid.MainActivity;
 import com.example.to_doandroid.Model.Adapters.TaskAdapter;
 import com.example.to_doandroid.Model.Task;
 import com.example.to_doandroid.R;
+import com.example.to_doandroid.ShareTasks;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -28,7 +29,7 @@ import com.google.firebase.database.ValueEventListener;
 public class CategoriesActivity extends AppCompatActivity {
 
     TextView workCategoryTitle, homeCategoryTitle, shopCategoryTitle, accountEmail, workTaskCount;
-    LinearLayout workCategoryLayout;
+    LinearLayout workCategoryLayout, shareCategoryLayout; // рабочие Layout
 
     DatabaseReference reference;
     FirebaseAuth firebaseAuth;
@@ -46,16 +47,20 @@ public class CategoriesActivity extends AppCompatActivity {
 
         this.homeCategoryTitle = findViewById(R.id.homeCategoryTitle);
         this.shopCategoryTitle = findViewById(R.id.shopCategoryTitle);
+        this.shareCategoryLayout = findViewById(R.id.shareCategoryLayout);
+
         this.accountEmail = findViewById(R.id.accountEmail);
+
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
 
         this.accountEmail.setText(firebaseUser.getEmail());
 
+        reference = FirebaseDatabase.getInstance().getReference().child("TaskList").child(firebaseUser.getUid()).child("Work Tasks Category"); //название узла в Firebase для конкретного пользователя
 
         //Получаем данные из Firebase
-        reference = FirebaseDatabase.getInstance().getReference().child("TaskList").child(firebaseUser.getUid()); //название узла в Firebase для конкретного пользователя
+
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -76,6 +81,14 @@ public class CategoriesActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CategoriesActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        this.shareCategoryLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CategoriesActivity.this, ShareTasks.class);
                 startActivity(intent);
             }
         });

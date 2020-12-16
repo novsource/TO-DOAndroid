@@ -14,16 +14,31 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.to_doandroid.MainActivity;
 import com.example.to_doandroid.R;
+import com.example.to_doandroid.View.ActionsWithTask.CreateNewTaskActivity;
 import com.example.to_doandroid.View.CategoriesActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class SignUpActivity extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
+    private FirebaseUser firebaseUser;
+    private DatabaseReference reference;
 
     private EditText emailAuthentication, passwordReg1, passwordReg2; // E-mail и пароль для регистрации
     private Button btnRegister; // Кнопка "Зарегистрироваться"
@@ -45,11 +60,10 @@ public class SignUpActivity extends AppCompatActivity {
         this.btnRegister = findViewById(R.id.btnRegister);
         this.signIn = findViewById(R.id.signIn);
 
-        firebaseAuth = FirebaseAuth.getInstance();
-
         this.btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                firebaseAuth = FirebaseAuth.getInstance();
                 RegisterInFirebase();
             }
         });
@@ -110,15 +124,29 @@ public class SignUpActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     Toast.makeText(SignUpActivity.this, "Аккаунт успешно зарегистрирован!", Toast.LENGTH_LONG);
-                    Intent intent = new Intent(SignUpActivity.this, CategoriesActivity.class);
-                    startActivity(intent);
-                    finish();
+
+                    firebaseUser = firebaseAuth.getCurrentUser();
+                    reference = FirebaseDatabase.getInstance().getReference().child("TaskList").child(firebaseUser.getUid());
+                    reference.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            snapshot.getRef().child("e-mail").setValue(firebaseUser.getEmail());
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                        }
+                    });
                 }
                 else {
                     Toast.makeText(SignUpActivity.this, "Ошибка регистрации! Попробуйте еще раз!", Toast.LENGTH_LONG).show();
                 }
                 progressDialog.dismiss();
+                Intent intent = new Intent(SignUpActivity.this, CategoriesActivity.class);
+                startActivity(intent);
             }
         });
+
+
     }
 }

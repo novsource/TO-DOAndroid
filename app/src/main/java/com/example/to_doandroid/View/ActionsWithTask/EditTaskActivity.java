@@ -36,7 +36,6 @@ public class EditTaskActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
 
-    Button btnUpdateTask;
     DatabaseReference reference;
 
     @Override
@@ -56,7 +55,6 @@ public class EditTaskActivity extends AppCompatActivity {
         this.taskDate.setText(getIntent().getStringExtra("taskDate"));
         this.taskInfo.setText("Создано " + getIntent().getStringExtra("taskWasCreated"));
 
-        this.btnUpdateTask = findViewById(R.id.btnUpdateTask);
         this.btnClose = findViewById(R.id.btnClose);
         this.deleteTask = findViewById(R.id.deleteTaskIcon);
 
@@ -65,9 +63,9 @@ public class EditTaskActivity extends AppCompatActivity {
 
         String taskId = getIntent().getStringExtra("taskId");
 
-        reference = FirebaseDatabase.getInstance().getReference().child("TaskList").child(firebaseUser.getUid()).child("Task " + taskId);
+        reference = FirebaseDatabase.getInstance().getReference().child("TaskList").child(firebaseUser.getUid()).child("Work Tasks Category").child("Task " + taskId);
 
-        this.btnUpdateTask.setOnClickListener(new View.OnClickListener() {
+        this.btnClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 reference.addValueEventListener(new ValueEventListener() {
@@ -87,14 +85,6 @@ public class EditTaskActivity extends AppCompatActivity {
 
                     }
                 });
-            }
-        });
-
-        this.btnClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(EditTaskActivity.this, MainActivity.class);
-                startActivity(intent);
             }
         });
 

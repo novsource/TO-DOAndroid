@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TODOAndroid">
-        <activity android:name=".View.CategoriesActivity"/>
+        <activity android:name=".ShareTasks"></activity>
+        <activity android:name=".View.CategoriesActivity" />
         <activity android:name=".View.AccountsAuth.SignUpActivity" />
         <activity android:name=".View.ActionsWithTask.EditTaskActivity" />
         <activity android:name=".View.CalendarActivity" />

@@ -31,19 +31,19 @@ import java.util.Random;
 
 public class CreateNewTaskActivity extends AppCompatActivity {
 
-    TextView taskDate; // дата задачи
-    TextView btnClose; // стрелка назад
-    EditText taskDoesTitle, taskNote; // Название задачи и заметка
-    CheckBox taskCB; // Статус задачи
+    private TextView taskDate; // дата задачи
+    private TextView btnClose; // стрелка назад
+    private EditText taskDoesTitle, taskNote; // Название задачи и заметка
+    private CheckBox taskCB; // Статус задачи
 
-    FirebaseAuth firebaseAuth;
-    FirebaseUser firebaseUser;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser firebaseUser;
 
-    LinearLayout addTaskDate; // Layout для календаря
+    private LinearLayout addTaskDate; // Layout для календаря
 
-    Button btnSaveTask; // Кнопки сохранения задачи и выхода из активити
-    DatabaseReference reference;
-    Integer taskId = new Random().nextInt(); // генерируем id для задачи
+    private Button btnSaveTask; // Кнопки сохранения задачи и выхода из активити
+    private DatabaseReference reference;
+    private Integer taskId = new Random().nextInt(); // генерируем id для задачи
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +81,7 @@ public class CreateNewTaskActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Добавляем задачу в базу данных
-                reference = FirebaseDatabase.getInstance().getReference().child("TaskList").child(firebaseUser.getUid()).child("Task " + taskId);
+                reference = FirebaseDatabase.getInstance().getReference().child("TaskList").child(firebaseUser.getUid()).child("Work Tasks Category").child("Task " + taskId);
                 reference.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
